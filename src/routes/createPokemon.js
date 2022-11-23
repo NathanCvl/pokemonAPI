@@ -5,6 +5,10 @@ module.exports = (app) => {
     Pokemon.create(req.body).then((pokemon) => {
       const message = `Le pokémon ${req.body.name} a bien été crée.`;
       res.json({ message, data: pokemon });
-    });
+    }).catch((error) => {
+			  const message = `Le pokémon ${req.body.name} n'a pas pu être crée.`;
+	  res.status(500).json({ message, data: error });
+	
+	});
   });
 };

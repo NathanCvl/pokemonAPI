@@ -22,7 +22,11 @@ require("./src/routes/findPokemonByPk")(app);
 require("./src/routes/createPokemon")(app);
 require("./src/routes/updatePokemon")(app);
 require("./src/routes/deletePokemon")(app);
-
+//on ajoute la gestion des erreurs 404
+app.use(({ res }) => {
+  const message = "La page demandée n'existe pas";
+  res.status(404).json({ message });
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
